@@ -1,0 +1,40 @@
+{
+  "name": "@openclaw/followupboss-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Follow Up Boss CRM — search contacts, manage leads, create tasks, add notes, and automate follow-ups via Claude or any MCP client",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "followupboss-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "claude",
+    "crm",
+    "followupboss",
+    "real-estate",
+    "follow-up-boss"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.8.3"
+  }
+}

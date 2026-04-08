@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "followupboss": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@openclaw/followupboss-mcp"
+      ],
+      "env": {
+        "FOLLOWUPBOSS_API_KEY": ""
+      }
+    }
+  }
+}

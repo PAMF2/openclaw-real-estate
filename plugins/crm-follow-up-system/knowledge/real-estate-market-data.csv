@@ -1,0 +1,19 @@
+metric,national_avg,hot_market,cold_market,description
+median_home_price,420000,580000,310000,Median sale price for single-family homes
+avg_days_on_market,34,12,68,Average days from listing to pending
+list_to_sale_ratio,0.98,1.03,0.94,Sale price as percentage of list price
+inventory_months,3.2,1.4,6.8,Months of supply at current sales pace
+homes_selling_above_asking_pct,32,58,12,Percentage of homes sold above ask
+avg_price_per_sqft,225,340,165,Average price per square foot
+mortgage_rate_30yr_fixed,6.75,6.75,6.75,Current average 30-year fixed rate
+buyer_agent_commission_pct,2.5,2.5,2.5,Typical buyer agent commission
+seller_agent_commission_pct,2.5,2.5,2.5,Typical seller agent commission
+closing_costs_buyer_pct,3.0,3.0,3.0,Buyer closing costs as pct of price
+closing_costs_seller_pct,2.0,2.0,2.0,Seller closing costs as pct of price
+avg_down_payment_pct,13,15,10,Average down payment percentage
+fha_min_down_pct,3.5,3.5,3.5,FHA minimum down payment
+va_min_down_pct,0,0,0,VA loan minimum down payment
+conventional_min_down_pct,3,3,3,Conventional minimum down payment
+pmi_trigger_ltv,80,80,80,PMI required above this LTV
+property_tax_rate_avg_pct,1.1,1.3,0.8,Average effective property tax rate
+homeowner_insurance_avg_annual,1800,2400,1200,Average annual homeowner insurance
