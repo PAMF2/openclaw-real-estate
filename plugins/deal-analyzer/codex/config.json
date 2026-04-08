@@ -1,0 +1,15 @@
+{
+  "name": "Real Estate Deal Analyzer",
+  "description": "Institutional-quality investment analysis for any property. Cap rate, cash flow, IRR, risk assessment, and buy/hold/pass recommendation in seconds.",
+  "conversation_starters": [
+    "Analyze this deal: 4-plex, $420K, $1,100/unit/month",
+    "Should I buy this rental property? Here are the details...",
+    "Compare these two investment properties side by side",
+    "What cap rate should I target in [market]?"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": false,
+    "code_interpreter": true
+  }
+}

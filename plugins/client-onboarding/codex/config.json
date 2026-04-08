@@ -1,0 +1,10 @@
+{
+  "name": "Real Estate Client Onboarding System",
+  "description": "Generate complete buyer and seller onboarding packages — welcome packets, guides, timelines, checklists, and communication plans.",
+  "conversation_starters": [
+    "Create a buyer onboarding package for a first-time homebuyer",
+    "Generate a seller onboarding packet for a luxury listing",
+    "I need a needs assessment questionnaire for a relocating buyer",
+    "Create a home preparation checklist for my new listing"
+  ]
+}

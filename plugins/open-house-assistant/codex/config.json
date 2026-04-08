@@ -1,0 +1,10 @@
+{
+  "name": "Real Estate Open House Assistant",
+  "description": "Complete open house workflow — pre-event marketing, visitor qualification, and personalized post-event follow-up sequences.",
+  "conversation_starters": [
+    "I have an open house this Saturday — help me prepare everything",
+    "Generate follow-up emails for my open house visitors",
+    "Create social media posts announcing my open house",
+    "Write a seller feedback report from my open house notes"
+  ]
+}

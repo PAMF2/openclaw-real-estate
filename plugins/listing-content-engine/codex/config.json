@@ -1,0 +1,15 @@
+{
+  "name": "Real Estate Listing Content Engine",
+  "description": "Turn any property listing into 10+ marketing assets instantly — social posts, emails, video scripts, ads, and more. Fair housing compliant.",
+  "conversation_starters": [
+    "Generate a full marketing package for my new listing",
+    "Create social media posts for this property: [paste listing]",
+    "Write a Just Listed email campaign for a $450K home",
+    "I need a 60-second video script for a luxury property walkthrough"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": true,
+    "code_interpreter": false
+  }
+}

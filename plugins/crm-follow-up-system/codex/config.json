@@ -1,0 +1,15 @@
+{
+  "name": "Real Estate CRM Follow-Up System",
+  "description": "Generate personalized 30-day follow-up sequences for any real estate lead. Works with Follow Up Boss, kvCORE, Lofty, and any CRM.",
+  "conversation_starters": [
+    "I have a new Zillow lead — help me create a follow-up sequence",
+    "Generate a 30-day drip campaign for a cold lead who hasn't responded in 2 weeks",
+    "Create a follow-up plan for a pre-approved buyer looking in [area]",
+    "I need a re-engagement campaign for 50 cold leads in my CRM"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": false,
+    "code_interpreter": false
+  }
+}
