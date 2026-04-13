@@ -42,7 +42,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "followupboss": {
       "command": "npx",
-      "args": ["-y", "@openclaw/followupboss-mcp"],
+      "args": ["-y", "followupboss-mcp"],
       "env": {
         "FOLLOWUPBOSS_API_KEY": "your-api-key-here"
       }
@@ -60,7 +60,7 @@ Add to your project's `.mcp.json`:
   "mcpServers": {
     "followupboss": {
       "command": "npx",
-      "args": ["-y", "@openclaw/followupboss-mcp"],
+      "args": ["-y", "followupboss-mcp"],
       "env": {
         "FOLLOWUPBOSS_API_KEY": "your-api-key-here"
       }

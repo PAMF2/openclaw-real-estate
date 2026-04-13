@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/followupboss-mcp",
+  "name": "followupboss-mcp",
   "version": "1.0.0",
   "description": "MCP server for Follow Up Boss CRM — search contacts, manage leads, create tasks, add notes, and automate follow-ups via Claude or any MCP client",
   "type": "module",
@@ -27,7 +27,7 @@
     "real-estate",
     "follow-up-boss"
   ],
-  "author": "OpenClaw",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

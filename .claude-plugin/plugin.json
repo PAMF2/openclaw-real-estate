@@ -1,9 +1,7 @@
 {
-  "name": "openclaw-real-estate",
+  "name": "real-estate-ai-plugins",
   "version": "1.0.0",
   "description": "AI plugins for real estate professionals — CRM follow-ups, listing content, deal analysis, and more",
-  "author": "OpenClaw",
-  "homepage": "https://openclaw.ai",
   "skills": [
     "plugins/crm-follow-up-system/SKILL.md",
     "plugins/listing-content-engine/SKILL.md",

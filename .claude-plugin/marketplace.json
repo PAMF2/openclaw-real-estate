@@ -1,0 +1,32 @@
+{
+  "listing": {
+    "title": "Real Estate AI Suite — CRM Follow-Ups, Listings, Deals",
+    "shortDescription": "5 AI plugins for real estate agents. Automated follow-up sequences, listing content, deal analysis, open house prep, and client onboarding.",
+    "longDescription": "The Real Estate AI Suite gives agents and teams a complete AI-powered workflow on top of Claude and Codex. The five plugins cover the full client lifecycle: CRM Follow-Up System generates personalized follow-up sequences and integrates with Follow Up Boss; Listing Content Engine produces MLS-ready descriptions, social captions, and email blasts; Deal Analyzer runs comps and surfaces negotiation insights; Open House Assistant builds scripts, sign-in flows, and post-event follow-ups; and Client Onboarding automates welcome packets and document checklists. Each plugin ships with a system prompt tuned for real estate language and a Codex config for Shopify-compatible delivery.",
+    "category": "productivity",
+    "tags": [
+      "real-estate",
+      "crm",
+      "follow-up-boss",
+      "lead-nurturing",
+      "listing-content",
+      "deal-analysis",
+      "open-house",
+      "client-onboarding"
+    ],
+    "screenshots": [],
+    "pricing": {
+      "model": "paid",
+      "priceRange": "$99-199"
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "claude-code",
+      "codex",
+      "perplexity",
+      "manus"
+    ],
+    "minVersion": "1.0.0"
+  },
+}
