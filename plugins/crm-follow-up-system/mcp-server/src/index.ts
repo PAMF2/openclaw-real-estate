@@ -3,11 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// ============================================================
-// Follow Up Boss MCP Server
-// Connects Claude to Follow Up Boss CRM via their REST API
 // Docs: https://docs.followupboss.com/reference/getting-started
-// ============================================================
 
 const API_KEY = process.env.FOLLOWUPBOSS_API_KEY;
 if (!API_KEY) {
@@ -22,8 +18,6 @@ const BASE_URL = "https://api.followupboss.com/v1";
 
 // Basic auth: API key as username, blank password
 const AUTH_HEADER = "Basic " + Buffer.from(`${API_KEY}:`).toString("base64");
-
-// --- API Client -----------------------------------------------------------
 
 interface FubRequestOptions {
   method?: string;
@@ -58,8 +52,6 @@ async function fubRequest<T = unknown>(opts: FubRequestOptions): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-// --- Response Helpers -----------------------------------------------------
-
 function mcpSuccess(data: unknown) {
   return {
     content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }],
@@ -78,8 +70,6 @@ function mcpError(error: unknown) {
   };
 }
 
-// --- MCP Server -----------------------------------------------------------
-
 const server = new McpServer(
   {
     name: "followupboss-mcp",
@@ -92,8 +82,6 @@ const server = new McpServer(
       "create_task to schedule follow-ups, and list_deals to view pipeline.",
   },
 );
-
-// --- TOOL: Search Contacts ------------------------------------------------
 
 server.registerTool(
   "search_contacts",
@@ -129,8 +117,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Get Contact Details --------------------------------------------
-
 server.registerTool(
   "get_contact",
   {
@@ -150,8 +136,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Create Contact -------------------------------------------------
 
 server.registerTool(
   "create_contact",
@@ -226,8 +210,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Update Contact -------------------------------------------------
-
 server.registerTool(
   "update_contact",
   {
@@ -256,8 +238,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Add Note -------------------------------------------------------
 
 server.registerTool(
   "add_note",
@@ -294,8 +274,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Create Task ----------------------------------------------------
-
 server.registerTool(
   "create_task",
   {
@@ -310,9 +288,9 @@ server.registerTool(
       dueDate: z.string().describe("Due date in YYYY-MM-DD format"),
       assignedTo: z.number().optional().describe("User ID to assign task to"),
       type: z
-        .string()
+        .enum(["call", "email", "text", "todo", "showing"])
         .optional()
-        .describe("Task type: 'call', 'email', 'text', 'todo', 'showing'"),
+        .describe("Task type"),
     },
     annotations: { destructiveHint: false, idempotentHint: false },
   },
@@ -329,8 +307,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: List Tasks -----------------------------------------------------
 
 server.registerTool(
   "list_tasks",
@@ -362,8 +338,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: List Deals / Pipeline ------------------------------------------
-
 server.registerTool(
   "list_deals",
   {
@@ -389,8 +363,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Create Deal ----------------------------------------------------
 
 server.registerTool(
   "create_deal",
@@ -424,8 +396,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Log Call -------------------------------------------------------
 
 server.registerTool(
   "log_call",
@@ -464,8 +434,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: List Users (Agents) --------------------------------------------
-
 server.registerTool(
   "list_users",
   {
@@ -485,8 +453,6 @@ server.registerTool(
   },
 );
 
-// --- RESOURCE: Pipeline Stages --------------------------------------------
-
 server.registerResource(
   "pipeline-stages",
   "fub://pipeline/stages",
@@ -502,8 +468,6 @@ server.registerResource(
     };
   },
 );
-
-// --- PROMPT: Daily Follow-Up Plan -----------------------------------------
 
 server.registerPrompt(
   "daily-followup-plan",
@@ -530,8 +494,6 @@ server.registerPrompt(
     ],
   }),
 );
-
-// --- PROMPT: Lead Summary -------------------------------------------------
 
 server.registerPrompt(
   "lead-summary",
@@ -562,8 +524,6 @@ server.registerPrompt(
     ],
   }),
 );
-
-// --- Start Server ---------------------------------------------------------
 
 async function main() {
   const transport = new StdioServerTransport();
