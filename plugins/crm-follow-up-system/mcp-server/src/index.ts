@@ -58,6 +58,26 @@ async function fubRequest<T = unknown>(opts: FubRequestOptions): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+// --- Response Helpers -----------------------------------------------------
+
+function mcpSuccess(data: unknown) {
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }],
+  };
+}
+
+function mcpError(error: unknown) {
+  return {
+    content: [
+      {
+        type: "text" as const,
+        text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      },
+    ],
+    isError: true as const,
+  };
+}
+
 // --- MCP Server -----------------------------------------------------------
 
 const server = new McpServer(
@@ -100,32 +120,11 @@ server.registerTool(
     try {
       const data = await fubRequest<{ people: unknown[]; _metadata: unknown }>({
         path: "/people",
-        params: {
-          search: query,
-          limit,
-          offset,
-          sort,
-          tag: tags,
-        },
+        params: { search: query, limit, offset, sort, tag: tags },
       });
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: JSON.stringify(data.people, null, 2),
-          },
-        ],
-      };
+      return mcpSuccess(data.people);
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error searching contacts: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -145,22 +144,9 @@ server.registerTool(
   },
   async ({ contactId }) => {
     try {
-      const data = await fubRequest({ path: `/people/${contactId}` });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(await fubRequest({ path: `/people/${contactId}` }));
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error getting contact: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -231,27 +217,11 @@ server.registerTool(
       if (tags) body.tags = tags;
       if (assignedTo) body.assignedTo = assignedTo;
       if (properties) body.properties = [properties];
-
-      const data = await fubRequest({
-        method: "POST",
-        path: "/people",
-        body,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({ method: "POST", path: "/people", body }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error creating contact: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -278,26 +248,11 @@ server.registerTool(
       const body = Object.fromEntries(
         Object.entries(fields).filter(([, v]) => v !== undefined),
       );
-      const data = await fubRequest({
-        method: "PUT",
-        path: `/people/${contactId}`,
-        body,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({ method: "PUT", path: `/people/${contactId}`, body }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error updating contact: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -326,26 +281,15 @@ server.registerTool(
   },
   async ({ personId, subject, body, isHtml }) => {
     try {
-      const data = await fubRequest({
-        method: "POST",
-        path: "/notes",
-        body: { personId, subject, body, isHtml },
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({
+          method: "POST",
+          path: "/notes",
+          body: { personId, subject, body, isHtml },
+        }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error adding note: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -377,27 +321,11 @@ server.registerTool(
       const body: Record<string, unknown> = { personId, name, dueDate };
       if (assignedTo) body.assignedTo = assignedTo;
       if (type) body.type = type;
-
-      const data = await fubRequest({
-        method: "POST",
-        path: "/tasks",
-        body,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({ method: "POST", path: "/tasks", body }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error creating task: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -425,28 +353,11 @@ server.registerTool(
     try {
       const data = await fubRequest<{ tasks: unknown[] }>({
         path: "/tasks",
-        params: {
-          personId: personId,
-          assignedTo: assignedTo,
-          status,
-          limit,
-        },
+        params: { personId, assignedTo, status, limit },
       });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data.tasks, null, 2) },
-        ],
-      };
+      return mcpSuccess(data.tasks);
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error listing tasks: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -472,21 +383,9 @@ server.registerTool(
         path: "/deals",
         params: { personId, stage, limit },
       });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data.deals, null, 2) },
-        ],
-      };
+      return mcpSuccess(data.deals);
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error listing deals: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -517,27 +416,11 @@ server.registerTool(
       if (dealValue) body.dealValue = dealValue;
       if (stage) body.stage = stage;
       if (expectedCloseDate) body.expectedCloseDate = expectedCloseDate;
-
-      const data = await fubRequest({
-        method: "POST",
-        path: "/deals",
-        body,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({ method: "POST", path: "/deals", body }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error creating deal: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -572,27 +455,11 @@ server.registerTool(
       const body: Record<string, unknown> = { personId, note };
       if (outcome) body.outcome = outcome;
       if (duration) body.duration = duration;
-
-      const data = await fubRequest({
-        method: "POST",
-        path: "/calls",
-        body,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await fubRequest({ method: "POST", path: "/calls", body }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error logging call: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -611,21 +478,9 @@ server.registerTool(
   async () => {
     try {
       const data = await fubRequest<{ users: unknown[] }>({ path: "/users" });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data.users, null, 2) },
-        ],
-      };
+      return mcpSuccess(data.users);
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error listing users: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
