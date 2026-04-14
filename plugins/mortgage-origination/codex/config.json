@@ -1,0 +1,15 @@
+{
+  "name": "Mortgage Origination Assistant",
+  "description": "Full-cycle mortgage file support for brokers and loan officers. Analyzes borrower files, calculates GDS/TDS/DTI ratios, drafts client updates, generates document checklists, and prepares underwriting submission summaries. Works with Finmo, Velocity, Encompass, and any LOS.",
+  "conversation_starters": [
+    "Analyze this borrower file: employed, $95K salary, $450 car payment, buying at $550K with 10% down",
+    "Draft a conditional approval email to my client — approval came in with 4 conditions",
+    "Generate a document checklist for a self-employed borrower doing a purchase",
+    "Calculate GDS and TDS for this file and stress test it"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": false,
+    "code_interpreter": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Underwriting Assistant",
+  "description": "Expert mortgage underwriting support for underwriters and processors. Drafts decision summaries, condition letters, income calculations, credit analysis, and document follow-up emails for conventional, FHA, VA, and non-QM loans.",
+  "conversation_starters": [
+    "Write a condition letter for this FHA file — here are the outstanding items...",
+    "Calculate qualifying income for a self-employed borrower with these tax returns...",
+    "Draft an underwriting decision summary — here is the file snapshot...",
+    "Write a follow-up email to the borrower requesting missing bank statements"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": false,
+    "code_interpreter": true
+  }
+}

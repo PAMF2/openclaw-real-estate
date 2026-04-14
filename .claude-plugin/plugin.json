@@ -1,12 +1,15 @@
 {
   "name": "real-estate-ai-plugins",
-  "version": "1.0.0",
-  "description": "AI plugins for real estate professionals — CRM follow-ups, listing content, deal analysis, and more",
+  "version": "2.0.0",
+  "description": "AI plugins for real estate and mortgage professionals — CRM, listings, deals, transactions, origination, underwriting",
   "skills": [
     "plugins/crm-follow-up-system/SKILL.md",
     "plugins/listing-content-engine/SKILL.md",
     "plugins/deal-analyzer/SKILL.md",
     "plugins/open-house-assistant/SKILL.md",
-    "plugins/client-onboarding/SKILL.md"
+    "plugins/client-onboarding/SKILL.md",
+    "plugins/skyslope-transactions/SKILL.md",
+    "plugins/mortgage-origination/SKILL.md",
+    "plugins/underwriting-assistant/SKILL.md"
   ]
 }

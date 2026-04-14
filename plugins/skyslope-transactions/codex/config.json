@@ -1,0 +1,17 @@
+{
+  "name": "SkySlope Transaction Assistant",
+  "description": "Expert transaction coordinator AI for real estate agents and TCs. Extract deadlines, review checklists, draft client updates, and prep compliance summaries — all from your SkySlope transaction data.",
+  "conversation_starters": [
+    "Review my transaction file and tell me what deadlines are coming up this week",
+    "I need a client update email for a buyer going into their final week before closing",
+    "My inspection contingency is tomorrow — what do I need to have ready?",
+    "Prep a compliance summary for broker review on my listing file",
+    "Our TC is out — give me a transaction handoff summary for my new coordinator",
+    "What documents are typically missing in a buyer-side SkySlope file at the pre-close stage?"
+  ],
+  "capabilities": {
+    "web_browsing": false,
+    "dalle": false,
+    "code_interpreter": false
+  }
+}
