@@ -9,6 +9,16 @@
       "env": {
         "FOLLOWUPBOSS_API_KEY": ""
       }
+    },
+    "kvcore": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "kvcore-mcp"
+      ],
+      "env": {
+        "KVCORE_API_TOKEN": ""
+      }
     }
   }
 }
